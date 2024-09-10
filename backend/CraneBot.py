@@ -50,12 +50,12 @@ class CraneState:
         yaw = self.endeffector_position.get("yaw", 0)
         x = -self.origin[0] + x
         y = -self.origin[1] + y
-        # y = -y
         z = -self.origin[2] + z
 
         theta = self.origin[3] * (np.pi / 180)
-        rot_x = np.cos(theta) * x + np.sin(theta) * y
-        y = -np.sin(theta) * x + np.cos(theta) * y
+        rot_x = np.cos(theta) * x - np.sin(theta) * y
+        y = np.sin(theta) * x + np.cos(theta) * y
+        y = -y
         x = rot_x
 
 

@@ -212,6 +212,10 @@ const Crane = () => {
       const axesHelper = new THREE.AxesHelper(30);
       scene.add(axesHelper);
 
+      // Robot origin axes
+      const robotOriginAxesHelper = new THREE.AxesHelper(15);
+      base.add(robotOriginAxesHelper); 
+
 
       // Animation loop
       const animate = () => {
@@ -257,7 +261,8 @@ const Crane = () => {
             base.position.x = data.origin[0];
             base.position.z = data.origin[1];
             base.position.y = data.origin[2];
-            base.rotation.y = (data.origin[3] + 270) * Math.PI / 180;
+            base.rotation.y = (data.origin[3]) * Math.PI / 180;
+            // base.rotation.y = (data.origin[3] + 270) * Math.PI / 180;
 
           }
         }
