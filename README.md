@@ -29,3 +29,27 @@
 
 ### Side-by-side comparison of PD Controller (left) and MPC Controller (right)
 ![Program Demo](media/PD_vs_MPC.gif)
+
+
+### **Main Project Structure**
+
+```
+├── README.md
+├── environment.yml
+├── backend
+│   ├── CraneBot.py
+│   ├── main.py
+│   └── MPCController.py
+├── config
+│   └── crane_config.json
+├── frontend
+│   ├── app
+│   │   ├── page.tsx
+│   │   └── websocketService.ts
+│   └── components
+│       ├── ControlPanel.tsx
+│       ├── Crane.tsx
+│       ├── CraneState.ts
+│       └── EndEffectorState.ts
+└── media
+```
