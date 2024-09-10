@@ -1,5 +1,3 @@
-import exp from "constants";
-
 interface CraneState {
     origin: [number, number];
     swing_rotation: number;

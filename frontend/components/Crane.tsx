@@ -175,11 +175,12 @@ const Crane = () => {
       rightJaw.position.set(craneConfig.jaw.rightJaw.positionX, craneConfig.jaw.rightJaw.positionY, craneConfig.jaw.rightJaw.positionZ);
       wrist.add(rightJaw);
 
-      const centerPointGeometry = new THREE.SphereGeometry(craneConfig.centerPoint.radius, 320, 320);
-      const centerPointMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const centerPoint = new THREE.Mesh(centerPointGeometry, centerPointMaterial);
-      centerPoint.position.set(0, craneConfig.jaw.rightJaw.positionY, craneConfig.jaw.rightJaw.positionZ);
-      wrist.add(centerPoint);
+      // To visualize end effector position
+      // const centerPointGeometry = new THREE.SphereGeometry(craneConfig.centerPoint.radius, 320, 320);
+      // const centerPointMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      // const centerPoint = new THREE.Mesh(centerPointGeometry, centerPointMaterial);
+      // centerPoint.position.set(0, craneConfig.jaw.rightJaw.positionY, craneConfig.jaw.rightJaw.positionZ);
+      // wrist.add(centerPoint);
 
       // Connect components
       swing.add(lift);
