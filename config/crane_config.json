@@ -1,0 +1,69 @@
+{
+  "dimensions": {
+    "swing": {
+      "width": 10,
+      "height": 2,
+      "depth": 10
+    },
+    "lift": {
+      "width": 5,
+      "height": 30,
+      "depth": 5
+    },
+    "elbow": {
+      "width": 2.5,
+      "height": 2.5,
+      "depth": 10
+    },
+    "elbowPivot": {
+      "positionY": 0,
+      "positionZ": -4
+    },
+    "elbowExtension": {
+      "width": 2.5,
+      "height": 2.5,
+      "depth": 20
+    },
+    "wrist": {
+      "width": 2.5,
+      "height": 5,
+      "depth": 2.5
+    },
+    "jaw": {
+      "width": 1,
+      "height": 1,
+      "depth": 5,
+      "leftJaw": {
+        "positionX": -0.625,
+        "positionY": -3.15,
+        "positionZ": -2.75
+      },
+      "rightJaw": {
+        "positionX": 0.625,
+        "positionY": -3.15,
+        "positionZ": -2.75
+      }
+    },
+    "centerPoint": {
+      "radius": 1,
+      "positionY": -3.15,
+      "positionZ": -2.75
+    }
+  },
+  "max_velocities":{
+    "origin": [10.0, 10.0],
+    "swing_rotation": 50.0,
+    "lift_elevation": 50.0,
+    "elbow_rotation": 50.0,
+    "wrist_rotation": 50.0,
+    "gripper_state": 50.0
+  },
+  "max_accelerations":{
+    "origin": [5.0, 5.0],
+    "swing_rotation": 10.0,
+    "lift_elevation": 10.0,
+    "elbow_rotation": 10.0,
+    "wrist_rotation": 10.0,
+    "gripper_state": 10.0
+  }
+}
