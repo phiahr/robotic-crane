@@ -2,7 +2,7 @@
 
 This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing real-time 3D visualization using Three.js. It supports actuator state control, inverse kinematics calculations, and movement comparisons with different controllers like PD and MPC. 
 
-![Program Demo](media/Move_origin.gif)
+![Program Demo](media/static_image.png)
 
 ## Table of Contents
 - [Robotic Crane - 4 DoF Crane Simulation with 3D Visualization](#robotic-crane---4-dof-crane-simulation-with-3d-visualization)
