@@ -2,6 +2,29 @@
 
 This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing real-time 3D visualization using Three.js. It supports actuator state control, inverse kinematics calculations, and movement comparisons with different controllers like PD and MPC. 
 
+![Program Demo](media/Move_origin.gif)
+
+## Table of Contents
+- [Robotic Crane - 4 DoF Crane Simulation with 3D Visualization](#robotic-crane---4-dof-crane-simulation-with-3d-visualization)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Demonstration](#demonstration)
+    - [Control Actuator States](#control-actuator-states)
+    - [Set 4D Point Using Inverse Kinematics](#set-4d-point-using-inverse-kinematics)
+    - [Move Origin with End Effector Stability](#move-origin-with-end-effector-stability)
+    - [PD Controller (Left) vs MPC Controller (Right)](#pd-controller-left-vs-mpc-controller-right)
+  - [Installation \& Usage](#installation--usage)
+    - [1. Clone the Repository](#1-clone-the-repository)
+    - [2. Navigate to the Project Directory](#2-navigate-to-the-project-directory)
+    - [3. Create the Conda Environment](#3-create-the-conda-environment)
+    - [4. Start the Backend Server](#4-start-the-backend-server)
+    - [5. Start the Frontend Client](#5-start-the-frontend-client)
+    - [6. Access the Application](#6-access-the-application)
+  - [Project Structure](#project-structure)
+  - [Technologies Used](#technologies-used)
+  - [How It Works](#how-it-works)
+  - [Future Enhancements](#future-enhancements)
+
 ## Features
 - **3D Visualization**: Control and visualize the robotic crane in real-time through a Three.js-powered frontend.
 - **Actuator Control**: Manually adjust the actuator states to move the crane.

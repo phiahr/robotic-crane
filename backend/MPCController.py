@@ -41,7 +41,7 @@ class MPCController:
         Q = np.eye(nx)
         R = np.eye(nu)
         Q[len(current_origin):, len(current_origin):0] *= 100 
-        Q[0:len(current_origin), 0:len(current_origin)] *= 0.5
+        Q[0:len(current_origin), 0:len(current_origin)] *= 0.25
 
         cost = 0
         constraints = []
