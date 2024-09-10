@@ -7,8 +7,8 @@ class MPCController:
         self.state = state
         self.dt = 0.1
         self.N = 10
-        self.nx = len(state.target_values) + 1 # origin is 2 values
-        self.nu = len(state.prev_control) + 1
+        self.nx = len(state.target_values) + 3 # origin is 4 values
+        self.nu = len(state.prev_control) + 3
 
     def control_update(self):
         state = self.state
@@ -29,8 +29,8 @@ class MPCController:
         current_state = np.concatenate((current_origin, current_state))
         target_state = np.concatenate((target_origin, target_state))
 
-        max_speed_origin = state.max_velocities.get("origin", np.zeros(2))
-        max_acceleration_origin = state.max_accelerations.get("origin", np.zeros(2))
+        max_speed_origin = state.max_velocities.get("origin", np.zeros(4))
+        max_acceleration_origin = state.max_accelerations.get("origin", np.zeros(4))
 
         max_speed = np.array([state.max_velocities[actuator] for actuator in state.target_values.keys() if actuator != 'origin'])
         max_acceleration = np.array([state.max_accelerations[actuator] for actuator in state.target_values.keys() if actuator != 'origin'])
@@ -40,8 +40,8 @@ class MPCController:
 
         Q = np.eye(nx)
         R = np.eye(nu)
-        Q[2:, 2:0] *= 100 
-        Q[0:2, 0:2] *= 0.5
+        Q[len(current_origin):, len(current_origin):0] *= 100 
+        Q[0:len(current_origin), 0:len(current_origin)] *= 0.5
 
         cost = 0
         constraints = []
@@ -65,12 +65,12 @@ class MPCController:
         optimal_u = u[:, 0].value
         
         current_origin = getattr(state, "origin")
-        new_origin_pos = np.array(current_origin) + optimal_u[0:2] * dt
+        new_origin_pos = np.array(current_origin) + optimal_u[0:4] * dt
         setattr(state, "origin", new_origin_pos.tolist())
 
         for idx, actuator in enumerate(state.target_values.keys()):
             if actuator == 'origin':
                 continue
             current_pos = getattr(state, actuator)
-            new_pos = current_pos + optimal_u[idx + 1] * dt # +1 because of the origin 
+            new_pos = current_pos + optimal_u[idx + 3] * dt # +1 because of the origin 
             setattr(state, actuator, new_pos)

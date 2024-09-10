@@ -110,11 +110,16 @@ const Crane = () => {
         scene.add(light);
       }
 
+      const base_geometry = new THREE.BoxGeometry(craneConfig.swing.width * 1.5, 2, craneConfig.swing.depth * 1.5);
+      const base = new THREE.Mesh(base_geometry, grey_mesh);
+      scene.add(base);
+
+
       const swingGeometry = new THREE.CylinderGeometry(craneConfig.swing.width / 4, craneConfig.swing.depth / 2, craneConfig.swing.height);
       const swing = new THREE.Mesh(swingGeometry, red_mesh);
-      swing.position.y = craneConfig.swing.height / 2;
       swing.castShadow = true;
-      scene.add(swing);
+      swing.position.y = craneConfig.swing.height;
+      base.add(swing);
 
       const liftGeometry = new THREE.BoxGeometry(craneConfig.lift.width, craneConfig.lift.height, craneConfig.lift.depth);
       const lift = new THREE.Mesh(liftGeometry, red_mesh);
@@ -249,8 +254,11 @@ const Crane = () => {
             leftJaw.position.x = -0.625 - data.gripper_state / 10 * 0.2;
             rightJaw.position.x = 0.625 + data.gripper_state / 10 * 0.2;
 
-            swing.position.x = data.origin[0];
-            swing.position.z = data.origin[1];
+            base.position.x = data.origin[0];
+            base.position.z = data.origin[1];
+            base.position.y = data.origin[2];
+            base.rotation.y = (data.origin[3] + 270) * Math.PI / 180;
+
           }
         }
       };

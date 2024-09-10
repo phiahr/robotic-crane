@@ -1,5 +1,5 @@
 interface CraneState {
-    origin: [number, number];
+    origin: [number, number, number, number];
     swing_rotation: number;
     lift_elevation: number;
     elbow_rotation: number;

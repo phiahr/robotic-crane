@@ -51,7 +51,7 @@
     }
   },
   "max_velocities":{
-    "origin": [10.0, 10.0],
+    "origin": [10.0, 10.0, 10.0, 10.0],
     "swing_rotation": 50.0,
     "lift_elevation": 50.0,
     "elbow_rotation": 50.0,
@@ -59,7 +59,7 @@
     "gripper_state": 50.0
   },
   "max_accelerations":{
-    "origin": [5.0, 5.0],
+    "origin": [5.0, 5.0, 5.0, 5.0],
     "swing_rotation": 10.0,
     "lift_elevation": 10.0,
     "elbow_rotation": 10.0,

@@ -12,7 +12,7 @@ const craneConfig = config.dimensions;
 const ControlPanel = () => {
 
   const defaultCraneState = {
-    origin: [0, 0],
+    origin: [0, 0, 0, 0],
     swing_rotation: 0,
     lift_elevation: craneConfig.lift.height / 2,
     elbow_rotation: 0,
@@ -133,11 +133,18 @@ const ControlPanel = () => {
 
       const moveOriginFolder = gui.addFolder('Origin Controls');
       moveOriginFolder.add(craneState.origin, '0', -20, 20).name('Move on x-axis').onChange((value: number) => {
-        setCraneState(prev => ({ ...prev, origin: [value, prev.origin[1]] }));
+        setCraneState(prev => ({ ...prev, origin: [value, prev.origin[1], prev.origin[2], prev.origin[3]] }));
       });
       moveOriginFolder.add(craneState.origin, '1', -20, 20).name('Move on y-axis').onChange((value: number) => {
-        setCraneState(prev => ({ ...prev, origin: [prev.origin[0], value] }));
+        setCraneState(prev => ({ ...prev, origin: [prev.origin[0], value, prev.origin[2], prev.origin[3]] }));
       });
+      moveOriginFolder.add(craneState.origin, '2', -20, 20).name('Move on z-axis').onChange((value: number) => {
+        setCraneState(prev => ({ ...prev, origin: [prev.origin[0], prev.origin[1], value, prev.origin[3]] }));
+      });
+      moveOriginFolder.add(craneState.origin, '3', -180, 180).name('Rotate').onChange((value: number) => {
+        setCraneState(prev => ({ ...prev, origin: [prev.origin[0], prev.origin[1], prev.origin[2], value] }));
+      });
+
       const moveOriginButton = moveOriginFolder.add({ move: () => moveOrigin() }, 'move').name('Move Origin');
       moveOriginFolder.open();
 
