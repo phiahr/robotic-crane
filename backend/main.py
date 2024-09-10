@@ -6,7 +6,7 @@ import asyncio
 import random
 import json
 
-from crane_bot import CraneBot
+from CraneBot import CraneBot
 
 app = FastAPI()
 crane_bot = CraneBot()
