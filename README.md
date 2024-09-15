@@ -143,6 +143,8 @@ Now, you can interact with the robotic crane!
 ---
 
 ## Future Enhancements
+- Set slider values to maximum values the gripper could reach
+- Deal with edge case of origin being further away from where the end effector can keep its state
 - Limit joint rotations
 - Improve the 3D visualization with more detailed models.
 - Extend functionality to support different types of robotic arms.
