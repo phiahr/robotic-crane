@@ -28,7 +28,7 @@ class CraneState:
             self.max_accelerations = self.crane_config["max_accelerations"]
 
             self.crane_config = self.crane_config["dimensions"]
-            self.lift_elevation = self.crane_config["lift"]["height"] / 2
+            self.lift_elevation = self.crane_config["lift"]["height"] / 2 # initial value
             self.target_values["lift_elevation"] = (
                 self.crane_config["lift"]["height"] / 2
             )

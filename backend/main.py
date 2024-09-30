@@ -60,11 +60,10 @@ async def websocket_endpoint(websocket: WebSocket):
 
     try:
         while True:
-            while True:
-                send_task = asyncio.create_task(send(websocket, crane_bot))
-                await send_task
-                recv_task = asyncio.create_task(recv(websocket, crane_bot))
-                await recv_task
+            send_task = asyncio.create_task(send(websocket, crane_bot))
+            await send_task
+            recv_task = asyncio.create_task(recv(websocket, crane_bot))
+            await recv_task
     except Exception as e:
         print(f"Error: {e}")
 

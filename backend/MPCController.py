@@ -72,5 +72,5 @@ class MPCController:
             if actuator == 'origin':
                 continue
             current_pos = getattr(state, actuator)
-            new_pos = current_pos + optimal_u[idx + 3] * dt # +1 because of the origin 
+            new_pos = current_pos + optimal_u[idx + 3] * dt # +3 because of the origin 
             setattr(state, actuator, new_pos)

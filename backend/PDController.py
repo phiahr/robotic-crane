@@ -59,8 +59,8 @@ class PDController:
         max_speed = state.max_velocities.get("origin", 0)
         max_acceleration = state.max_accelerations.get("origin", 0)
 
-        target_pos_x, target_pos_y = origin
-        target_pos = np.array([target_pos_x, target_pos_y])
+        target_pos_x, target_pos_y, target_pos_z, target_theta = origin
+        target_pos = np.array([target_pos_x, target_pos_y, target_pos_z, target_theta])
 
         error = target_pos - current_pos
         derivative = (error - np.array(state.prev_error['origin'])) / dt

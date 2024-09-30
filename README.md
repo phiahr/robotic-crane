@@ -83,6 +83,10 @@ conda env create -f environment.yml
   ```
 - Run the client:
   ```bash
+  pnpm install
+  ```
+- Run the client:
+  ```bash
   pnpm dev
   ```
   or
