@@ -32,6 +32,67 @@ const ControlPanel = () => {
   const wsServiceRef = useRef<WebSocketService | null>(null); // Use useRef to hold wsService
   const guiRef = useRef<dat.GUI | null>(null);  // Ref to store the GUI instance
 
+  const [recording, setRecording] = useState(false);  // State to track recording status
+
+
+  const mediaRecorderRef: MediaRecorder = useRef(null);
+  const audioChunksRef = useRef([]);
+
+  const toggleRecording = async () => {
+    setRecording(prev => !prev);
+    if (!recording) {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream, { mimeType: "audio/mp4" });
+
+      mediaRecorderRef.current.start();
+      console.log('Recording started...');
+
+      audioChunksRef.current = [];
+      mediaRecorderRef.ondataavailable = (event) => {
+        audioChunksRef.push(event.data);
+      };
+    } else {
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        console.log("Data available event fired:", event.data.size);
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        } else {
+          console.warn("Empty audio chunk received.");
+        }
+      };
+      mediaRecorderRef.current.stop();
+      mediaRecorderRef.current.onstop = async () => {
+        console.log('Recording stopped.');
+        if (audioChunksRef.current.length === 0) {
+          console.error("No audio data recorded.");
+          return;
+        }
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/mp4' });
+        const audio = new Audio(URL.createObjectURL(audioBlob));
+
+        audio.onloadedmetadata = () => {
+          console.log("Audio duration:", audio.duration);
+          if (audio.duration === 0) {
+            console.error("Error: Audio duration is 0.");
+          }
+        };
+        const formData = new FormData();
+        formData.append('file', audioBlob, 'audio.mp4');
+
+        try {
+          await fetch('http://localhost:8000/process_audio', {
+            method: 'POST',
+            body: formData,
+            mode: "cors",
+          });
+          console.log('Audio sent to backend for processing.');
+        } catch (error) {
+          console.error('Error sending audio:', error);
+        }
+      };
+    }
+  };
+
   const moveCrane = () => {
     console.log('Move crane');
     wsServiceRef.current?.sendWebSocketMessage(craneState);
@@ -148,16 +209,21 @@ const ControlPanel = () => {
       const moveOriginButton = moveOriginFolder.add({ move: () => moveOrigin() }, 'move').name('Move Origin');
       moveOriginFolder.open();
 
+      const recordingFolder = gui.addFolder('Recording Controls');
+      const recordingButton = recordingFolder.add({ toggle: toggleRecording }, 'toggle').name(recording ? 'Stop Recording' : 'Start Recording');
+
+      recordingFolder.open();
 
       gui.open();
-
 
     }
 
 
     return () => {
+      guiRef.current?.destroy();
+      guiRef.current = null;
     };
-  }, [craneState, endEffectorState]);
+  }, [craneState, endEffectorState, recording]);
 
   const updateGuiValues = (newValues: any, folderName: string) => {
 

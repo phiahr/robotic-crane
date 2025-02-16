@@ -13,6 +13,7 @@ This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing rea
     - [Set 4D Point Using Inverse Kinematics](#set-4d-point-using-inverse-kinematics)
     - [Move Origin with End Effector Stability](#move-origin-with-end-effector-stability)
     - [PD Controller (Left) vs MPC Controller (Right)](#pd-controller-left-vs-mpc-controller-right)
+    - [Control crane by voice](#control-crane-by-voice)
   - [Installation \& Usage](#installation--usage)
     - [1. Clone the Repository](#1-clone-the-repository)
     - [2. Navigate to the Project Directory](#2-navigate-to-the-project-directory)
@@ -20,6 +21,7 @@ This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing rea
     - [4. Start the Backend Server](#4-start-the-backend-server)
     - [5. Start the Frontend Client](#5-start-the-frontend-client)
     - [6. Access the Application](#6-access-the-application)
+    - [(7. For Voice capabilities)](#7-for-voice-capabilities)
   - [Project Structure](#project-structure)
   - [Technologies Used](#technologies-used)
   - [How It Works](#how-it-works)
@@ -31,6 +33,7 @@ This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing rea
 - **Inverse Kinematics**: Input a 4D point, and the crane's end effector will move to it by calculating inverse kinematics.
 - **Origin Movement**: Move the crane's origin while keeping the end effector steady.
 - **Controller Comparison**: Compare the performance of PD and MPC controllers side-by-side.
+- **Voice Control**: Control the crane with your voice and the power of an LLM
 
 ## Demonstration
 ### Control Actuator States
@@ -44,6 +47,11 @@ This project simulates a 4 Degrees of Freedom (DoF) robotic crane, providing rea
 
 ### PD Controller (Left) vs MPC Controller (Right)
 ![Program Demo](media/PD_vs_MPC.gif)
+
+### Control crane by voice
+<video src="https://github.com/user-attachments/assets/87ca4c7b-99d5-4556-a31c-f6f40271aaa8" controls width="600"></video>
+
+
 
 ---
 
@@ -98,6 +106,13 @@ conda env create -f environment.yml
 Open your browser and navigate to:
 ```
 http://localhost:3000
+```
+
+### (7. For Voice capabilities)
+Download, install and serve ollama
+Create model with:
+```
+ollama create "llama3.2-robotic-crane" -f system_prompt.md
 ```
 
 Now, you can interact with the robotic crane!

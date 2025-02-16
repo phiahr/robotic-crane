@@ -145,7 +145,7 @@ const Crane = () => {
       loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json", function (font) {
         console.log(font);
 
-        const textGeometry = new TextGeometry("Monumental", {
+        const textGeometry = new TextGeometry("     Phiahr", {
           font: font,
           size: 2,
           depth: 0.5,

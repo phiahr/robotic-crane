@@ -103,8 +103,10 @@ class CraneBot:
         self.controller = MPCController(self.state)
 
     def __str__(self):
-        state = self.state.to_dict().items()
-        return f"Crane has state: {state}"
+        state = self.state.to_dict()
+        state["endeffector_position"] = self.state.endeffector_position
+        state = {key: value for key, value in state.items()}
+        return f'{state}'
 
     def set_controller(self, controller):
         if controller == "PD":
